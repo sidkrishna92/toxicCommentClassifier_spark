@@ -18,15 +18,19 @@ Output:
 def driver():
 	from pyspark import SparkContext, SparkConf
 	from pyspark.sql import SQLContext, HiveContext, SparkSession				
-	spark = SparkSession.builder.master("yarn").appName('Pyspark_dbsro_directCommunication').enableHiveSupport().getOrCreate()
+	spark = SparkSession.builder.master("yarn").appName('Comment_Classification').enableHiveSupport().getOrCreate()
 	spark.sparkContext.setLogLevel('ERROR')
-	
 	filename = './spitzer/train.csv'
 	
 	import read_preprocess as rp
 	train_data = rp.read_preprocess(filename, spark)
+	# train_data.stopwords():
+	
+	print("\n"+ "--"*5)
 	train_data.data_df.show()
+	print("\n"+ "--"*5)
 	train_data.data_df.printSchema()
+	print("\n"+ "--"*5)
 	print("Total number of rows: ", train_data.data_df.count())
 	
 
