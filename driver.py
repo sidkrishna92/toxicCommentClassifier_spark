@@ -26,12 +26,16 @@ def driver():
 	train_data = rp.read_preprocess(filename, spark)
 	# train_data.stopwords():
 	
+	train_data.corpus_featureGenerator(numFeatures=10000, inp_colName="comment_text", op_colName= "features")
+	
 	print("\n"+ "--"*5)
 	train_data.data_df.show()
 	print("\n"+ "--"*5)
 	train_data.data_df.printSchema()
 	print("\n"+ "--"*5)
 	print("Total number of rows: ", train_data.data_df.count())
+	
+	
 	
 
 	
