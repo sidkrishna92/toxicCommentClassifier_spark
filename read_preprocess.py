@@ -38,7 +38,7 @@ class read_preprocess(object):
 		self.data_df = self.data_df.withColumn('comment_text', regexp_replace(self.data_df.comment_text, "\p{Punct}", " "))
 	
 	def corpus_featureGenerator(self, numFeatures, inp_colName, op_colName):
-		from pyspark.ml import Tokenizer, HashingTF, IDF
+		from pyspark.ml.feature import Tokenizer, HashingTF, IDF
 		
 		#Tokenize input text to be analyzed
 		# tf(t,d) = #(t) in document 'd'
