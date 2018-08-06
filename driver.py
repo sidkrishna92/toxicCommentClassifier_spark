@@ -57,9 +57,9 @@ def driver():
 
 		#Run model on Test Data
 		test_model = tm.model_tester(test_data.data_df, spark, feat_vec, label, model_name, model_build.model) 
-		final_df = test_model.pred_df.withColumn(label, pred_df["probability"])
+		final_df = test_model.pred_df.withColumn(label, test_model.pred_df["probability"])
 	
-	final_df.coalesce(1).write.csv("./spitzer/results/")
+	#final_df.coalesce(1).write.csv("./spitzer/results/")
 	
 if __name__ == "__main__":
 	driver()
